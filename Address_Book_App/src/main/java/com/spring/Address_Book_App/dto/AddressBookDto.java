@@ -1,9 +1,21 @@
 package com.spring.Address_Book_App.dto;
 
 
+import jakarta.validation.constraints.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
+
+@Setter
+@Getter
 public class AddressBookDto {
 
+    @NotNull
+    @Size(min = 2, message = "Name should be atleast 2 characters long")
+    @Pattern(regexp = "^[A-Za-z]+$", message = "Name should contain alphabets only!")
     private String name;
+
+    @NotNull
     private Long phoneNumber;
 
     public AddressBookDto() {}
@@ -17,23 +29,9 @@ public class AddressBookDto {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Long getPhoneNumber() {
         return phoneNumber;
     }
-
-    public void setPhoneNumber(Long phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-
-}
-
-}
-
 }
 
 
