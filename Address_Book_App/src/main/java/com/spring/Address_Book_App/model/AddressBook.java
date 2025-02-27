@@ -1,5 +1,4 @@
 package com.spring.Address_Book_App.model;
-
 import jakarta.persistence.*;
 
 @Entity

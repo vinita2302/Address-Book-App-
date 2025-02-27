@@ -24,6 +24,12 @@ public class AddressBookService {
     }
 
     public ResponseEntity<AddressBook> getAddressBookByName(String name) {
+
+        for (AddressBook addressBook : addressBooks) {
+            if (addressBook.getName().equals(name)) return new ResponseEntity<>(addressBook, HttpStatus.FOUND);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+
         log.info("Searching for address book by name: {}", name);
         Optional<AddressBook> addressBook = addressBooks.stream()
                 .filter(ab -> ab.getName().equalsIgnoreCase(name))
@@ -31,6 +37,7 @@ public class AddressBookService {
 
         return addressBook.map(book -> new ResponseEntity<>(book, HttpStatus.FOUND))
                 .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
+
     }
 
     public ResponseEntity<AddressBook> createAddressBook(AddressBookDto addressBookDto) {
@@ -41,12 +48,19 @@ public class AddressBookService {
     }
 
     public ResponseEntity<AddressBook> updateAddressBook(Long id, AddressBookDto addressBookDto) {
+
+        for (int i = 0; i < addressBooks.size(); i++) {
+            if (addressBooks.get(i).getId() == id) {
+                addressBooks.set(i, new AddressBook(addressBookDto.getName(), addressBookDto.getPhoneNumber()));
+                return new ResponseEntity<>(addressBooks.get(i), HttpStatus.OK);
+
         log.info("Updating address book with ID: {}", id);
         for (int i = 0; i < addressBooks.size(); i++) {
             if (addressBooks.get(i).getId().equals(id)) {
                 AddressBook updatedBook = new AddressBook(id, addressBookDto.getName(), addressBookDto.getPhoneNumber());
                 addressBooks.set(i, updatedBook);
                 return new ResponseEntity<>(updatedBook, HttpStatus.OK);
+
             }
         }
         log.warn("Address book with ID {} not found", id);
@@ -54,6 +68,20 @@ public class AddressBookService {
     }
 
     public ResponseEntity<String> deleteAddressBook(Long id) {
+
+        for (int i = 0; i < addressBooks.size(); i++) {
+            if (addressBooks.get(i).getId() == id) {
+                addressBooks.remove(i);
+                return new ResponseEntity<>("Deleted successfully", HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>("Unable to delete address book " + id, HttpStatus.NOT_FOUND);
+    }
+
+    public ResponseEntity<String> deleteAllAddressBook() {
+        if (addressBooks.removeAll(addressBooks)) return new ResponseEntity<>("delete all address book", HttpStatus.OK);
+        return null;
+
         log.info("Deleting address book with ID: {}", id);
         boolean removed = addressBooks.removeIf(ab -> ab.getId().equals(id));
         if (removed) {
