@@ -32,6 +32,17 @@ public class AddressBookDto {
     public Long getPhoneNumber() {
         return phoneNumber;
     }
+
 }
+
+
+    public void setPhoneNumber(Long phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+
+}
+
+
 
 
