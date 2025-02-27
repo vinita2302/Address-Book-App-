@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
+
 @Setter
 @Getter
 public class AddressBookDto {
@@ -31,4 +32,20 @@ public class AddressBookDto {
     public Long getPhoneNumber() {
         return phoneNumber;
     }
+
 }
+
+
+}
+
+
+    public void setPhoneNumber(Long phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+
+}
+
+
+
+
