@@ -1,4 +1,7 @@
 
+package com.spring.Address_Book_App.controller;
+
+
 import com.spring.Address_Book_App.dto.AddressBookDto;
 import com.spring.Address_Book_App.model.AddressBook;
 import com.spring.Address_Book_App.service.AddressBookService;
@@ -11,10 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +23,7 @@ import java.util.List;
 @RequestMapping("/address-book")
 
 public class AddresBookController {  // Fixed class name
+
 
     @Autowired
     private AddressBookService addressBookService;
@@ -49,6 +49,7 @@ public class AddresBookController {  // Fixed class name
 
     @PutMapping("/{id}")
     public ResponseEntity<AddressBook> updateAddressBook(@PathVariable String id, @Valid @RequestBody AddressBookDto addressBookDto){
+
 
 
     @GetMapping("")
@@ -101,6 +102,7 @@ public class AddresBookController {  // Fixed class name
     public ResponseEntity<String> deleteAllAddressBook(){
         log.info("delete all address book");
         return addressBookService.deleteAllAddressBook();
+
 
     }
 

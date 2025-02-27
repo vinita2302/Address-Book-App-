@@ -1,10 +1,10 @@
 package com.spring.Address_Book_App.dto;
 
-
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
+
 
 @Setter
 @Getter
@@ -32,6 +32,9 @@ public class AddressBookDto {
     public Long getPhoneNumber() {
         return phoneNumber;
     }
+
+}
+
 
 }
 
