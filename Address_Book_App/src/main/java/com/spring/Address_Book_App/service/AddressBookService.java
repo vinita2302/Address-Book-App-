@@ -2,7 +2,6 @@ package com.spring.Address_Book_App.service;
 
 import com.spring.Address_Book_App.dto.AddressBookDto;
 import com.spring.Address_Book_App.model.AddressBook;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -54,32 +53,6 @@ public class AddressBookService {
 
     public ResponseEntity<String> deleteAllAddressBook() {
         if (addressBooks.removeAll(addressBooks)) return new ResponseEntity<>("delete all address book", HttpStatus.OK);
-
-@Service
-public class AddressBookService {
-
-    public ResponseEntity<String> getAllAddressBook() {
-        return new ResponseEntity<>("get all address book", HttpStatus.OK);
-    }
-
-    public ResponseEntity<String> getAddressBookById(String id) {
-        return new ResponseEntity<>("get address book of id "+id, HttpStatus.OK);
-    }
-
-    public ResponseEntity<String> createAddressBook() {
-        return new ResponseEntity<>("create address book", HttpStatus.OK);
-    }
-
-    public ResponseEntity<String> updateAddressBook(String id) {
-        return new ResponseEntity<>("update address book of id "+id, HttpStatus.OK);
-    }
-
-    public ResponseEntity<String> deleteAddressBook(String id) {
-        return new ResponseEntity<>("delete address book of id "+id, HttpStatus.OK);
-    }
-
-    public ResponseEntity<String> deleteAllAddressBook() {
-        return new ResponseEntity<>("delete all address book", HttpStatus.OK);
-
+        return new ResponseEntity<>("Unable to delete address books", HttpStatus.OK);
     }
 }
