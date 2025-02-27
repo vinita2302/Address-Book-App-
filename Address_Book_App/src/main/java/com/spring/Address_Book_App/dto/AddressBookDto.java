@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 
+
 @Setter
 @Getter
 public class AddressBookDto {
@@ -26,8 +27,14 @@ public class AddressBookDto {
     }
 
     public String getName() {
+
         return name;
     }
+
+    public Long getPhoneNumber() {
+        return phoneNumber;
+    }
+}
 
     public Long getPhoneNumber() {
         return phoneNumber;
@@ -45,7 +52,6 @@ public class AddressBookDto {
 
 
 }
-
 
 
 
