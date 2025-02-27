@@ -1,9 +1,11 @@
 
 package com.spring.Address_Book_App.controller;
 
+
 import com.spring.Address_Book_App.dto.AddressBookDto;
 import com.spring.Address_Book_App.model.AddressBook;
 import com.spring.Address_Book_App.service.AddressBookService;
+
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,18 +14,25 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @Slf4j
 @RestController
 @RequestMapping("/address-book")
 
 public class AddresBookController {  // Fixed class name
 
+
     @Autowired
     private AddressBookService addressBookService;
+
+    @GetMapping(value = {"", "/"})
+    public ResponseEntity<List<AddressBook>> getAllAddressBook(){
+        log.info("Get all address book");
 
     @GetMapping("")
     public ResponseEntity<List<AddressBook>> getAllAddressBook() {
         log.info("Fetching all address books");
+
 
         return addressBookService.getAllAddressBook();
     }
@@ -32,6 +41,7 @@ public class AddresBookController {  // Fixed class name
 
     public ResponseEntity<AddressBook> getAddressBookByName(@PathVariable String name){
         log.info("Get address book by name");
+
   public ResponseEntity<AddressBook> getAddressBookByName(@PathVariable String name) {
         log.info("Fetching address book with name: {}", name);
 
@@ -42,9 +52,11 @@ public class AddresBookController {  // Fixed class name
 
     public ResponseEntity<AddressBook> createAddressBook(@RequestBody AddressBookDto addressBookDto){
         log.info("create address book using {}", addressBookDto);
+
       
     public ResponseEntity<AddressBook> createAddressBook(@RequestBody AddressBookDto addressBookDto) {
         log.info("Creating new address book: {}", addressBookDto);
+
 
         return addressBookService.createAddressBook(addressBookDto);
     }
@@ -68,6 +80,9 @@ public class AddresBookController {  // Fixed class name
         return addressBookService.deleteAllAddressBook();
     }
 
+
+}
+
 }
 
     public ResponseEntity<AddressBook> updateAddressBook(@PathVariable Long id, @RequestBody AddressBookDto addressBookDto) {
@@ -87,4 +102,5 @@ public class AddresBookController {  // Fixed class name
         return addressBookService.deleteAllAddressBook();
     }
 }
+
 

@@ -2,7 +2,6 @@ package com.spring.Address_Book_App.service;
 
 import com.spring.Address_Book_App.dto.AddressBookDto;
 import com.spring.Address_Book_App.model.AddressBook;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -61,6 +60,10 @@ public class AddressBookService {
             return ResponseEntity.ok("Deleted successfully");
         }
 
+    public ResponseEntity<String> deleteAllAddressBook() {
+        if (addressBooks.removeAll(addressBooks)) return new ResponseEntity<>("delete all address book", HttpStatus.OK);
+        return new ResponseEntity<>("Unable to delete address books", HttpStatus.OK);
+
         log.warn("Unable to delete, ID {} not found", id);
         return new ResponseEntity<>("Unable to delete address book " + id, HttpStatus.NOT_FOUND);
     }
@@ -80,6 +83,7 @@ public class AddressBookService {
     public ResponseEntity<String> deleteAllAddressBook() {
         if (addressBooks.removeAll(addressBooks)) return new ResponseEntity<>("delete all address book", HttpStatus.OK);
         return new ResponseEntity<>("Unable to delete address books", HttpStatus.OK);
+
 
     }
 }
